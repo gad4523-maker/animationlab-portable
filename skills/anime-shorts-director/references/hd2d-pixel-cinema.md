@@ -1,33 +1,33 @@
-# HD-2D pixel cinema
+# HD-2D pixel cinema (optional style, any genre)
 
-Use this **selectable art direction** for cinematic pixel-anime What-If stories, especially psychological thrillers. Keep other styles available when the brief calls for them. Reference: the supplied two-part Ayanokoji prompt (style and continuity, not its fixed timestamps).
+**HD-2D is a rendering language, not a story genre.** Select it only when the episode brief or art-direction decision calls for it. Never automatically apply psychological-thriller lighting, expressions, pacing, or shot types to another anime. The same visual technique can support energetic combat, bright comedy, exploration, drama, and suspense.
 
-## Look — one consistent visual grammar
+## Visual system
 
-- Keep silhouettes and eyes recognizable; use restrained expressions, human proportions, coherent clothing, a consistent pixel scale, and hand-crafted/appropriately licensed character artwork.
-- Put sharp nearest-neighbor pixel sprites against **real depth**: layered foreground occluders, action plane, midground and distant atmospheric background. Use Three.js, PixiJS/Rigby, Blender or Godot as appropriate; the camera must move through space rather than zoom a single flat image.
-- Choose one lighting hierarchy per location: readable key, subdued fill, selective rim, grounded contact shadows and a limited warm/cool palette. Let darkness carry tension; don't bury eyes under bloom or effects.
-- For pure 2D pixel scenes, use an integer logical-to-delivery scale (for example 360×640 → 720×1280). For 2.5D/3D scenes, render the world at output resolution and use nearest sampling for sprite textures. The small `core/hd2d_pixel.js` helper (`pipeline/core/` in the full repo) provides `pixelCanvas`, `pixelTexture`, `pixelSnap`, and `pixelParallax`. Snap sprites when needed, not every camera movement. Avoid mismatched pixel scales and blur.
-- Never use generative AI image or video models—not even for source sprites, stills, backgrounds or textures. TTS/audio is allowed.
+- Use manually authored or properly licensed pixel-sprite characters and environments; preserve recognizable silhouettes, costume shapes, eye lines, proportions, and a consistent pixel scale. **No generative AI image or video creation**, including sprites, sprite sheets, backgrounds, textures, or individual frames. TTS and audio tools are allowed.
+- Create physical depth with foreground occluders, character/action planes, midground sets, and atmospheric distance. Animate genuine poses and parallax; do not fake a scene by zooming a flat still.
+- Render pure 2D sprites at an integer upscale (e.g. 360×640 to 720×1280). For 2.5D scenes render the world at delivery size, apply nearest sampling to sprite textures, and snap selected sprites without quantizing the camera. The optional `core/hd2d_pixel.js` helper (`pipeline/core/` in the full repo) provides `pixelCanvas`, `pixelTexture`, `pixelSnap`, and `pixelParallax`.
+- Set a coherent light direction, contact shadows, readable subject/background separation, and controlled effects. Choose color, contrast, atmosphere, and facial acting **from the scene's emotion**: daylight and vibrancy for wonder/comedy; forceful highlights and readable silhouettes for combat; quiet contrast and selective darkness only when justified.
 
-## Camera beats — choose, don't stack
+## Direct the camera by intent
 
-| Story function | Framing / motion | Edit point |
+| Scene intent | Useful composition and movement | Timing principle |
 | --- | --- | --- |
-| Hook or realization | Face/eye insert with a measured push-in | Cut when new information lands |
-| Orientation | Wide or over-the-shoulder parallax reveal | Cut after geography is clear |
-| Observation / suspicion | Detail inserts, eyeline-matched reverses, foreground occlusion | Cut on discovery or a glance |
-| Confrontation | Hold readable two-shot, then selectively tighten singles | Let the silence and reactions breathe |
-| Reversal / cliffhanger | Settle into the strongest silhouette or expression | End on a motivated sound/visual question |
+| Combat / power reveal | Wide geography, low-angle scale, motivated tracking, brief speed ramp or impact shake | Establish anticipation → clear action → impact → recovery; let key poses read |
+| Comedy / surprise | Legible two-shot, deadpan hold, quick reaction insert or punch-in | Protect setup and payoff; the hold can be funnier than the cut |
+| Exploration / spectacle | Wide reveal, foreground fly-through, rising crane or measured orbit | Give the environment room to register before the next surprise |
+| Explanation / powerscaling | Clear subject, motivated cutaway, anchored labels and scale comparisons | Let the viewer understand each new claim before escalating |
+| Character drama | Close-up, eyeline-matched reverse, subtle dolly or a composed static frame | Favor expression and silence over camera activity |
+| Mystery / psychological suspense | Controlled push-in, occlusion, selective detail insert, delayed reverse | Withhold or reveal information deliberately; don't import this grammar into other genres |
 
-Use **one dominant camera move per shot**. Establish who is looking where, preserve screen direction across cuts, and match the focal point and movement velocity at the cut. A stationary camera with an expressive blink can be stronger than an unnecessary orbit. Keep captions, mobile UI and eyes from competing for the same screen space.
+These are options, **not fixed shot orders or per-second schedules**. Choose the move based on the subject's action and viewer's focal point. One dominant move per shot is usually enough; vary move size and lens language with dramatic intensity. Preserve screen direction, eyeline matches, and camera velocity across cuts. Avoid simultaneous spinning, dollying, shaking, rack focus, and zooming unless each is motivated and readable on a phone.
 
-## Pacing and continuity
+## Motion, pacing, continuity
 
-- Start with a visible question and escalate via decisions, consequences and reactions—not constant cuts. The attachment's timestamps are one example, **not** a mandatory per-second schedule.
-- Animate poses, facial acting and parallax on a frame clock. A deliberate on-twos character cadence can coexist with smooth 30-fps camera and particles; avoid accidental jerks.
-- Use `evalCameraTrack(keys, seconds)` from `core/camera.js` (or `pipeline/core/camera.js`). Keyframe time is in **seconds**; paths now use time-aware continuous velocity across uneven durations. Optional `pace: 0..1.5` adjusts a key's incoming/outgoing speed; `hold: true` settles to zero velocity at a chosen reaction or edit beat. Keep `shake` near zero except justified impacts.
-- For a sequel, preserve the last usable ungraded shot frame's pose, set, lighting, lens and camera state. Continue from that state without a recap; do not mistake a fade-to-black or text card for the story pose.
-- Review first/last frames of cuts, adjacent motion, intersections, eye lines, subtitle clearance and the sound-led rhythm at phone size. Preserve source credits.
+- Determine the episode's genre, emotional curve, hook, escalation, payoff, and ending first. Time shots to **information, performance and motion**, not a copied template. A thrilling fight and a quiet reveal should not share an automatic cut rhythm.
+- Use frame-stepped pose and facial animation, consistent contact points, hand-drawn smears where appropriate, and multiplane motion. On-twos sprite animation can coexist with smooth camera movement; avoid unintended jitter.
+- Use `evalCameraTrack(keys, seconds)` in `core/camera.js` (full repo: `pipeline/core/camera.js`): time-aware interpolation works across unevenly spaced keys, `pace: 0..1.5` tunes travel through an interior key, and `hold: true` deliberately settles movement. Reserve camera shake for impacts that earn it.
+- For a sequel, match the last *usable story frame* (pose, light, set, lens, motion trajectory), not an outro card or fade. Preserve script and external asset credits.
+- Check adjacent frames at every action peak and cut, direction changes, geometry intersections, text safe zones, focal clarity, and sound sync at actual phone size.
 
-The art direction is a **reusable production option**, not a hardcoded character, engine or 60-second storyboard.
+**Do not lock** the episode to this style, any character, thriller mood, engine, camera preset, or timeline when the brief calls for something different.

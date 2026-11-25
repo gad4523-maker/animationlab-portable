@@ -45,11 +45,13 @@ function timedHermite(keys, index, t, field, axis, fallback) {
 }
 
 export function evalCameraTrack(keyframes, t) {
-  if (keyframes?.length > 1) {
-    for (let i = 1; i < keyframes.length; i++) {
-      if (!(keyframes[i].t > keyframes[i - 1].t))
-        throw new RangeError('Camera keyframe times must be strictly increasing');
-    }
+  // Validate and locate the active segment in one pass; keys may be edited
+  // by the caller, so never cache a stale timeline across frames.
+  let idx = -1;
+  for (let i = 1; i < (keyframes?.length ?? 0); i++) {
+    if (!(keyframes[i].t > keyframes[i - 1].t))
+      throw new RangeError('Camera keyframe times must be strictly increasing');
+    if (idx === -1 && t <= keyframes[i].t) idx = i - 1;
   }
   if (!keyframes || keyframes.length === 0) {
     return { pos: [0, 1, 5], look: [0, 0, 0], fov: 40, roll: 0, focus: 5, aperture: 0, shake: 0 };
@@ -69,13 +71,6 @@ export function evalCameraTrack(keyframes, t) {
     };
   }
 
-  let idx = 0;
-  for (let i = 0; i < keyframes.length - 1; i++) {
-    if (t >= keyframes[i].t && t <= keyframes[i + 1].t) {
-      idx = i;
-      break;
-    }
-  }
   // Timed Hermite ensures adjoining camera segments share the same velocity.
   const vec = (field) => [0, 1, 2].map(c => timedHermite(keyframes, idx, t, field, c, [0, 0, 0]));
   const field = (name, fallback) => timedHermite(keyframes, idx, t, name, null, fallback);
