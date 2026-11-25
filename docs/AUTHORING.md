@@ -4,6 +4,8 @@ An episode is a folder containing episode.json, scene modules or scripts, and it
 
 **Visual asset policy:** No generative AI image or video creation is permitted—not even individual sprite sheets, character illustrations, textures, backgrounds or keyframes. Author visuals with procedural code, manual drawing/modeling, or properly licensed human-made assets. Audio TTS remains allowed.
 
+The optional [HD-2D pixel cinema direction](../skills/anime-shorts-director/references/hd2d-pixel-cinema.md) uses layered pixel sprites, spatial parallax and story-aware camera pacing. Camera tracks in `core/camera.js` now preserve velocity across unevenly timed keys; `pace: 0..1.5` tunes velocity and `hold: true` creates deliberate reaction settles. The art style is a choice, not a forced engine setting.
+
 ## Renderer selection
 
 | Engine | When to use | Required shot fields and entry point |

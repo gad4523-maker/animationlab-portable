@@ -23,6 +23,8 @@ bash animlab estimate projects/new-short/out/balanced/benchmark.json --seconds 6
 
 Ten optional, version-pinned third-party skill repositories are linked as Git submodules. Run `git submodule update --init --depth 1` when you need them, then consult [the skill pack guide](docs/SKILL-PACKS.md). They are not runtime dependencies.
 
+For the selectable cinematic pixel-anime look and camera beat direction, use the [HD-2D pixel cinema guide](skills/anime-shorts-director/references/hd2d-pixel-cinema.md). Other styles remain available.
+
 See [the authoring guide](docs/AUTHORING.md) for episode keys and scene contracts. See [transfer instructions](docs/GEMINI-TRANSFER.md), [startup prompt](prompts/GEMINI-STARTUP.md), and [production prompt](prompts/GEMINI-PRODUCTION.md) for Gemini Tasks. The director lives in [skills/anime-shorts-director](skills/anime-shorts-director/SKILL.md).
 
 | Example | Command suffix after `bash animlab render` |

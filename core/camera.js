@@ -1,4 +1,4 @@
-// Cinematic camera rig: C1-continuous Catmull-Rom spline paths, trauma shake,
+// Cinematic camera rig: time-aware C1 Hermite paths, deterministic shake,
 // aspect-aware portrait framing, and GLB auto-framing.
 import * as THREE from '../vendor/three/three.module.min.js';
 
@@ -10,18 +10,47 @@ export const easeOut = (t) => 1 - Math.pow(1 - clamp(t), 3);
 export const seg = (t, a, b) => clamp((t - a) / Math.max(1e-5, b - a));
 export const ramp = (t, a, b) => smooth(seg(t, a, b));
 
-function catmull1(p0, p1, p2, p3, t) {
-  const t2 = t * t;
-  const t3 = t2 * t;
-  return 0.5 * (
-    2 * p1 +
-    (-p0 + p2) * t +
-    (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
-    (-p0 + 3 * p1 - 3 * p2 + p3) * t3
-  );
+// Monotone, time-aware cubic Hermite keeps velocity continuous across uneven keys.
+// A key can set hold:true to settle to a stop, or pace:0..1.5 to tune travel.
+// Camera timing always uses absolute seconds so a render is deterministic.
+function keyValue(k, field, axis, fallback) {
+  const value = k[field] ?? fallback;
+  return axis === null ? value : value[axis];
+}
+
+function keyVelocity(keys, index, field, axis, fallback) {
+  if (index === 0 || index === keys.length - 1 || keys[index].hold) return 0;
+  const before = keys[index - 1], here = keys[index], after = keys[index + 1];
+  const dt0 = here.t - before.t, dt1 = after.t - here.t;
+  const d0 = (keyValue(here, field, axis, fallback) - keyValue(before, field, axis, fallback)) / dt0;
+  const d1 = (keyValue(after, field, axis, fallback) - keyValue(here, field, axis, fallback)) / dt1;
+  if (d0 * d1 <= 0) return 0; // Do not overshoot at an extremum or plateau.
+  const w0 = 2 * dt1 + dt0, w1 = dt1 + 2 * dt0;
+  const pace = clamp(Number(here.pace ?? 1), 0, 1.5);
+  return pace * (w0 + w1) / (w0 / d0 + w1 / d1);
+}
+
+function timedHermite(keys, index, t, field, axis, fallback) {
+  const a = keys[index], b = keys[index + 1];
+  const dt = b.t - a.t;
+  const u = clamp((t - a.t) / dt), u2 = u * u, u3 = u2 * u;
+  const va = keyValue(a, field, axis, fallback);
+  const vb = keyValue(b, field, axis, fallback);
+  const ma = keyVelocity(keys, index, field, axis, fallback);
+  const mb = keyVelocity(keys, index + 1, field, axis, fallback);
+  return (2 * u3 - 3 * u2 + 1) * va +
+    (u3 - 2 * u2 + u) * dt * ma +
+    (-2 * u3 + 3 * u2) * vb +
+    (u3 - u2) * dt * mb;
 }
 
 export function evalCameraTrack(keyframes, t) {
+  if (keyframes?.length > 1) {
+    for (let i = 1; i < keyframes.length; i++) {
+      if (!(keyframes[i].t > keyframes[i - 1].t))
+        throw new RangeError('Camera keyframe times must be strictly increasing');
+    }
+  }
   if (!keyframes || keyframes.length === 0) {
     return { pos: [0, 1, 5], look: [0, 0, 0], fov: 40, roll: 0, focus: 5, aperture: 0, shake: 0 };
   }
@@ -47,24 +76,17 @@ export function evalCameraTrack(keyframes, t) {
       break;
     }
   }
-  const k0 = keyframes[Math.max(0, idx - 1)];
-  const k1 = keyframes[idx];
-  const k2 = keyframes[idx + 1];
-  const k3 = keyframes[Math.min(keyframes.length - 1, idx + 2)];
-  const rawU = clamp((t - k1.t) / Math.max(1e-5, k2.t - k1.t));
-
-  // Pure Catmull-Rom u preserves C1 velocity through all interior keyframes
-  const pos = [0, 1, 2].map((c) => catmull1(k0.pos[c], k1.pos[c], k2.pos[c], k3.pos[c], rawU));
-  const look = [0, 1, 2].map((c) => catmull1(k0.look[c], k1.look[c], k2.look[c], k3.look[c], rawU));
-  const s = smooth(rawU);
+  // Timed Hermite ensures adjoining camera segments share the same velocity.
+  const vec = (field) => [0, 1, 2].map(c => timedHermite(keyframes, idx, t, field, c, [0, 0, 0]));
+  const field = (name, fallback) => timedHermite(keyframes, idx, t, name, null, fallback);
   return {
-    pos,
-    look,
-    fov: lerp(k1.fov ?? 40, k2.fov ?? 40, s),
-    roll: lerp(k1.roll ?? 0, k2.roll ?? 0, s),
-    focus: lerp(k1.focus ?? 5.0, k2.focus ?? 5.0, s),
-    aperture: lerp(k1.aperture ?? 0.0, k2.aperture ?? 0.0, s),
-    shake: lerp(k1.shake ?? 0.0, k2.shake ?? 0.0, s),
+    pos: vec('pos'),
+    look: vec('look'),
+    fov: field('fov', 40),
+    roll: field('roll', 0),
+    focus: Math.max(0.01, field('focus', 5.0)),
+    aperture: Math.max(0, field('aperture', 0)),
+    shake: Math.max(0, field('shake', 0)),
   };
 }
 

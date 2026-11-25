@@ -15,6 +15,7 @@ description: Direct and verify cinematic vertical anime Shorts, especially What 
 Read the applicable guides as needed.
 
 - [Staging and look](references/staging-and-look.md) for angle, depth, and consistency.
+- [HD-2D pixel cinema](references/hd2d-pixel-cinema.md) for the selectable pixel-anime look, visual depth, camera beat choices, shot timing, and sequel continuity.
 - [Action and editing](references/action-and-editing.md) for energy, timing, shots, and loops.
 - [Quality and credits](references/quality-pass.md) for inspection and upstream attribution.
 - [Gemini Tasks usage](GEMINI-USAGE.md) for activation and the explicit-read workflow.
