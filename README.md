@@ -1,6 +1,6 @@
 # AnimationLab Portable
 
-A CPU-oriented production pipeline for original animated Shorts. It uses the same episode clock, authorable scenes and FFmpeg finishing across layered 2D, multiplane 2.5D and stylized 3D. AnimationLab's asset policy permits programmatic art and human-authored or permissively licensed assets, including credited reference assets. AI-generated images and video are prohibited, including individual frames, sprites, plates and other components. CPU narration synthesis is supported.
+A CPU-oriented production pipeline for original animated Shorts. It uses the same episode clock, authorable scenes and FFmpeg finishing across layered 2D, multiplane 2.5D and stylized 3D. AnimationLab's asset policy permits programmatic art and human-authored or permissively licensed assets, including credited reference assets. AI-generated individual still assets (such as sprites, sprite sheets, textures and background layers) are permitted when the project brief allows them, but the final animation must be staged and animated by the production engines. Fully AI-generated videos and static-image slideshows are prohibited. CPU narration synthesis is supported.
 
 ## Start on Debian 12
 
@@ -10,7 +10,7 @@ bash animlab doctor
 bash animlab qc examples/beacon --profile draft
 ~~~
 
-The Beacon Wake demo renders 105 frames at 360×640 with stereo sound and an exact three-frame crossfade. Use `--cpu-only` with bootstrap and render to exercise the browser-free version. Use `bash bootstrap.sh --help` for optional installs. The installer checks the existing environment and keeps pip, npm and browser caches within .runtime. It can reuse system Chromium or download the pinned Playwright headless shell if none is present.
+The Beacon Wake demo targets 105 frames at 360×640 with stereo sound and a three-frame crossfade. For a final narration voice, prefer a supplied clean recording or optional Kokoro CPU (`bash bootstrap.sh --kokoro`); eSpeak is a lightweight fallback. Use `--cpu-only` with bootstrap and render to exercise the browser-free version. Use `bash bootstrap.sh --help` for optional installs. The installer checks the existing environment and keeps pip, npm and browser caches within .runtime. It can reuse system Chromium or download the pinned Playwright headless shell if none is present.
 
 ## Start a project
 
@@ -21,7 +21,9 @@ bash animlab render projects/new-short --profile balanced
 bash animlab estimate projects/new-short/out/balanced/benchmark.json --seconds 60
 ~~~
 
-Ten optional, version-pinned third-party skill repositories are linked as Git submodules. Run `git submodule update --init --depth 1` when you need them, then consult [the skill pack guide](docs/SKILL-PACKS.md). They are not runtime dependencies.\n\nSee [the authoring guide](docs/AUTHORING.md) for episode keys and scene contracts. See [transfer instructions](docs/GEMINI-TRANSFER.md), [startup prompt](prompts/GEMINI-STARTUP.md), and [production prompt](prompts/GEMINI-PRODUCTION.md) for Gemini Tasks. The director lives in [skills/anime-shorts-director](skills/anime-shorts-director/SKILL.md).
+Ten optional, version-pinned third-party skill repositories are linked as Git submodules. Run `git submodule update --init --depth 1` when you need them, then consult [the skill pack guide](docs/SKILL-PACKS.md). They are not runtime dependencies.
+
+See [the authoring guide](docs/AUTHORING.md) for episode keys and scene contracts. See [transfer instructions](docs/GEMINI-TRANSFER.md), [startup prompt](prompts/GEMINI-STARTUP.md), and [production prompt](prompts/GEMINI-PRODUCTION.md) for Gemini Tasks. The director lives in [skills/anime-shorts-director](skills/anime-shorts-director/SKILL.md).
 
 | Example | Command suffix after `bash animlab render` |
 | --- | --- |

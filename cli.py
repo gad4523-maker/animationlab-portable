@@ -277,11 +277,14 @@ def assemble_episode(ep: dict, shot_results: list, master_wav: Path, ass_path: P
         cmd.extend(["-threads", "1", "-i", sr["mp4"]])
     cmd.extend(["-i", str(master_wav)])
 
-    exact_pts = f"settb=expr=1/{fps},setpts=N"
+    # FFmpeg's setpts filter may clear constant-frame-rate link metadata.
+    # xfade requires a known equal frame rate and time base on both inputs.
+    # Reset input timestamps before fps; keep fps as the final rate-setting filter.
+    frame_clock = f"fps={fps},settb=expr=1/{fps}"
     pixel_format = "yuv444p" if any(s["overlap_frames"] for s in shot_results) else "yuv420p"
     transport = video_filter(w, h, pix_fmt=pixel_format)
     filters = [
-        f"[{i}:v]{transport},fps={fps},{exact_pts}[v{i}]"
+        f"[{i}:v]{transport},setpts=PTS-STARTPTS,{frame_clock}[v{i}]"
         for i in range(n)
     ]
     cur_label = "v0"
@@ -297,10 +300,10 @@ def assemble_episode(ep: dict, shot_results: list, master_wav: Path, ass_path: P
             offset = shot_results[next_idx]["start_frame"] / fps
             filters.append(
                 f"[{cur_label}][{next_label}]xfade=transition={transition}:"
-                f"duration={overlap / fps:.9f}:offset={offset:.9f},{exact_pts}[{out_label}]"
+                f"duration={overlap / fps:.9f}:offset={offset:.9f},{frame_clock}[{out_label}]"
             )
         else:
-            filters.append(f"[{cur_label}][{next_label}]concat=n=2:v=1:a=0,{exact_pts}[{out_label}]")
+            filters.append(f"[{cur_label}][{next_label}]concat=n=2:v=1:a=0,{frame_clock}[{out_label}]")
         cur_label = out_label
 
     if ass_path and ass_path.exists():
