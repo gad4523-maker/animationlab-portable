@@ -1,6 +1,6 @@
-# HD-2D pixel cinema (optional style, any genre)
+# HD-2D pixel cinema (primary art direction, any genre)
 
-**HD-2D is a rendering language, not a story genre.** Select it only when the episode brief or art-direction decision calls for it. Never automatically apply psychological-thriller lighting, expressions, pacing, or shot types to another anime. The same visual technique can support energetic combat, bright comedy, exploration, drama, and suspense.
+**Use HD-2D pixel cinema as the default look for every new anime Short unless the user explicitly requests another art style.** This is a visual identity, not a genre or engine restriction: keep layered pixel sprites and real depth while changing mood, lighting, expressions, lens choices, effects, and pacing to suit the anime and scene. Never carry psychological-thriller direction into unrelated action, comedy, adventure, drama, or explanations.
 
 ## Visual system
 
@@ -30,4 +30,4 @@ These are options, **not fixed shot orders or per-second schedules**. Choose the
 - For a sequel, match the last *usable story frame* (pose, light, set, lens, motion trajectory), not an outro card or fade. Preserve script and external asset credits.
 - Check adjacent frames at every action peak and cut, direction changes, geometry intersections, text safe zones, focal clarity, and sound sync at actual phone size.
 
-**Do not lock** the episode to this style, any character, thriller mood, engine, camera preset, or timeline when the brief calls for something different.
+**Keep the HD-2D visual identity by default**, but never lock character, genre, mood, renderer, camera move, or shot length. Switch to another visual style when the user explicitly chooses it; keep that choice consistent within the episode.
