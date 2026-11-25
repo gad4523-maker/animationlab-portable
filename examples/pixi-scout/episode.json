@@ -1,0 +1,7 @@
+{
+  "episode_id": "pixi_scout",
+  "title": "Scout Signal",
+  "profiles": {"draft": {"width": 360, "height": 640, "fps": 24}},
+  "shots": [{"id": "scout", "engine": "pixi", "scene_module": "scout.js", "duration_sec": 2.5,
+    "sfx_cues": [{"at_sec": 1.18, "type": "spark", "gain": 0.29, "duration_sec": 0.5}]}]
+}

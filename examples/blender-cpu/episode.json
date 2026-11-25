@@ -1,0 +1,6 @@
+{
+  "episode_id": "cycles_orbit",
+  "title": "Cycles CPU orbit",
+  "profiles": {"draft": {"width": 180, "height": 320, "fps": 8}},
+  "shots": [{"id": "orbit", "engine": "blender", "blender_script": "scene.py", "duration_sec": 1.25}]
+}

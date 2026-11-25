@@ -1,0 +1,13 @@
+scout.png
+size: 192, 96
+filter: Linear, Linear
+body
+bounds: 0, 0, 51, 64
+head
+bounds: 54, 0, 44, 34
+upper
+bounds: 100, 0, 31, 18
+fore
+bounds: 132, 0, 31, 16
+leg
+bounds: 0, 66, 35, 24

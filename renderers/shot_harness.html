@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AnimationLab Shot Harness</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      overflow: hidden;
+      background: #000;
+      width: 100%;
+      height: 100%;
+    }
+    #wrap {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    #hud-canvas {
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="gl-canvas"></canvas>
+    <canvas id="hud-canvas"></canvas>
+  </div>
+  <script type="module">
+    const qs = new URLSearchParams(location.search);
+    const modPath = qs.get('module');
+    const W = parseInt(qs.get('w') || '1080', 10);
+    const H = parseInt(qs.get('h') || '1920', 10);
+    const fps = parseInt(qs.get('fps') || '30', 10);
+    const params = JSON.parse(qs.get('params') || '{}');
+    const shotCfg = JSON.parse(qs.get('shot') || '{}');
+
+    const glCanvas = document.getElementById('gl-canvas');
+    const hudCanvas = document.getElementById('hud-canvas');
+    glCanvas.width = W; glCanvas.height = H;
+    hudCanvas.width = W; hudCanvas.height = H;
+
+    try {
+      const mod = await import(modPath);
+      const controller = await mod.initShot({
+        glCanvas,
+        hudCanvas,
+        width: W,
+        height: H,
+        fps,
+        shot: shotCfg,
+        params,
+        profile: shotCfg._profile || { effects: 2, particles: 1 },
+      });
+
+      window.renderFrame = async (frameIdx) => {
+        await controller.renderFrame(frameIdx, frameIdx / fps, fps);
+      };
+      window.__SHOT_READY = true;
+    } catch (e) {
+      window.__SHOT_ERR = e?.stack || e?.message || String(e);
+    }
+  </script>
+</body>
+</html>

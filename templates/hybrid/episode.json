@@ -1,0 +1,32 @@
+{
+  "episode_id": "new_hybrid_short",
+  "title": "Hybrid 3D + Anime Short Template",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "voice": "am_michael",
+  "voice_speed": 1.08,
+  "audio_mood": "cosmic",
+  "shots": [
+    {
+      "id": "shot_01_cosmos",
+      "engine": "web3d",
+      "scene_module": "scenes/shot_01_3d.js",
+      "duration_sec": 4.5,
+      "narration": "Out here beyond the magnetosphere, solar plasma tears past Earth at supersonic speed.",
+      "transition": { "type": "smoothleft", "duration_sec": 0.30 },
+      "sfx_cues": [{ "at_sec": 0.2, "type": "whoosh", "duration_sec": 1.0, "gain": 0.5 }],
+      "params": { "badge": "PHASE 1 // ORBIT", "title": "ORBITAL INSERT" }
+    },
+    {
+      "id": "shot_02_hero",
+      "engine": "anime2d",
+      "scene_module": "scenes/shot_02_anime.js",
+      "duration_sec": 4.5,
+      "narration": "And on the ground below, every shockwave hits at full intensity.",
+      "transition": { "type": "fade", "duration_sec": 0.25 },
+      "sfx_cues": [{ "at_sec": 1.8, "type": "impact", "duration_sec": 1.2, "gain": 0.8 }],
+      "params": {}
+    }
+  ]
+}

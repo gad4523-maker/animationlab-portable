@@ -1,0 +1,16 @@
+{
+  "name": "animationlab-portable",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=18"},
+  "scripts": {"build": "node rigby/build.mjs"},
+  "dependencies": {
+    "playwright-core": "1.56.1",
+    "pixi.js": "8.23.0",
+    "pixi-filters": "6.1.5",
+    "@barvynkoa/particle-emitter": "0.0.1",
+    "esbuild": "0.25.12",
+    "@rigby2d/pixi-js": "0.6.0"
+  }
+}

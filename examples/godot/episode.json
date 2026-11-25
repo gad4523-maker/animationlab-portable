@@ -1,0 +1,6 @@
+{
+  "episode_id": "godot_arc",
+  "title": "Godot compatibility orbit",
+  "profiles": {"draft": {"width": 180, "height": 320, "fps": 12}},
+  "shots": [{"id": "arc", "engine": "godot", "godot_project": "stage", "duration_sec": 1.25}]
+}

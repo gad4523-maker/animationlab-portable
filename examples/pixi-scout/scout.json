@@ -1,0 +1,36 @@
+{
+  "skeleton": {"spine": "4.3.0", "width": 120, "height": 140},
+  "bones": [
+    {"name": "root"},
+    {"name": "hips", "parent": "root", "y": 46},
+    {"name": "rear", "parent": "hips", "x": -10, "y": -2, "rotation": -115},
+    {"name": "front", "parent": "hips", "x": 9, "y": -2, "rotation": -69},
+    {"name": "hood", "parent": "hips", "x": 6, "y": 54},
+    {"name": "arm", "parent": "hips", "x": 14, "y": 33, "length": 24, "rotation": -45},
+    {"name": "forearm", "parent": "arm", "x": 22, "length": 26, "rotation": 45}
+  ],
+  "slots": [
+    {"name": "rear", "bone": "rear", "attachment": "leg", "color": "9fb7b9ff"},
+    {"name": "front", "bone": "front", "attachment": "leg"},
+    {"name": "body", "bone": "hips", "attachment": "body"},
+    {"name": "head", "bone": "hood", "attachment": "head"},
+    {"name": "upper", "bone": "arm", "attachment": "upper"},
+    {"name": "fore", "bone": "forearm", "attachment": "fore"}
+  ],
+  "skins": [{"name": "default", "attachments": {
+    "rear": {"leg": {"x": 17, "width": 35, "height": 24}},
+    "front": {"leg": {"x": 17, "width": 35, "height": 24}},
+    "body": {"body": {"y": 22, "width": 51, "height": 64}},
+    "head": {"head": {"x": 1, "y": 5, "width": 44, "height": 34}},
+    "upper": {"upper": {"x": 11, "width": 31, "height": 18}},
+    "fore": {"fore": {"x": 13, "width": 31, "height": 16}}
+  }}],
+  "animations": {"signal": {"bones": {
+    "arm": {"rotate": [{"value": -4}, {"time": 0.62, "value": -25}, {"time": 1.18, "value": 57},
+                        {"time": 1.40, "value": 54}, {"time": 2.5, "value": 21}]},
+    "forearm": {"rotate": [{"value": -18}, {"time": 0.62, "value": 38}, {"time": 1.18, "value": -39},
+                            {"time": 1.40, "value": -38}, {"time": 2.5, "value": -4}]},
+    "hood": {"rotate": [{"value": 1}, {"time": 0.80, "value": -9}, {"time": 1.18, "value": 7},
+                         {"time": 2.5, "value": 0}]}
+  }}}
+}

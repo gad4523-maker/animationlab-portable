@@ -1,0 +1,28 @@
+{
+  "episode_id": "new_explainer_short",
+  "title": "What If Example Explainer",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "voice": "am_michael",
+  "voice_speed": 1.08,
+  "audio_mood": "cosmic",
+  "shots": [
+    {
+      "id": "shot_01_intro",
+      "engine": "web3d",
+      "scene_module": "scenes/shot_01.js",
+      "duration_sec": 5.0,
+      "narration": "Imagine shrinking Earth into a crystalline sphere hanging in deep orbit.",
+      "transition": { "type": "fade", "duration_sec": 0.35 },
+      "sfx_cues": [
+        { "at_sec": 0.2, "type": "whoosh", "duration_sec": 0.9, "gain": 0.45 },
+        { "at_sec": 2.4, "type": "impact", "duration_sec": 1.1, "gain": 0.55 }
+      ],
+      "params": {
+        "badge": "HYPOTHESIS // SCALE",
+        "title": "PLANETARY SCALE"
+      }
+    }
+  ]
+}

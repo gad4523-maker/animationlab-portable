@@ -1,0 +1,137 @@
+{
+  "episode_id": "signal_break",
+  "title": "Signal Break",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "audio_mood": "relay",
+  "allow_blue_purple": true,
+  "sfx_cues": [
+    {
+      "at_sec": 0.12,
+      "type": "servo",
+      "duration_sec": 0.59,
+      "gain": 0.2,
+      "pan": -0.28
+    },
+    {
+      "at_sec": 1.08,
+      "type": "servo",
+      "duration_sec": 0.53,
+      "gain": 0.28,
+      "pan": -0.2
+    },
+    {
+      "at_sec": 2.22,
+      "type": "fabric",
+      "duration_sec": 0.27,
+      "gain": 0.35,
+      "pan": 0.1
+    },
+    {
+      "at_sec": 3.51,
+      "type": "charge",
+      "duration_sec": 1.9,
+      "gain": 0.238,
+      "pan": 0.23
+    },
+    {
+      "at_sec": 4.72,
+      "type": "step",
+      "duration_sec": 0.27,
+      "gain": 0.323,
+      "pan": -0.15
+    },
+    {
+      "at_sec": 5.31,
+      "type": "step",
+      "duration_sec": 0.24,
+      "gain": 0.4335,
+      "pan": -0.21
+    },
+    {
+      "at_sec": 5.38,
+      "type": "whoosh",
+      "duration_sec": 0.42,
+      "gain": 0.527,
+      "pan": 0.22
+    },
+    {
+      "at_sec": 5.8,
+      "type": "impact",
+      "duration_sec": 0.84,
+      "gain": 0.48,
+      "pan": -0.07
+    },
+    {
+      "at_sec": 5.82,
+      "type": "spark",
+      "duration_sec": 0.72,
+      "gain": 0.5355,
+      "pan": -0.31
+    },
+    {
+      "at_sec": 6.48,
+      "type": "step",
+      "duration_sec": 0.29,
+      "gain": 0.289,
+      "pan": -0.3
+    },
+    {
+      "at_sec": 7.02,
+      "type": "electric",
+      "duration_sec": 0.72,
+      "gain": 0.14,
+      "pan": -0.31
+    },
+    {
+      "at_sec": 8.11,
+      "type": "fabric",
+      "duration_sec": 0.62,
+      "gain": 0.21,
+      "pan": 0.2
+    }
+  ],
+  "shots": [
+    {
+      "id": "approach",
+      "engine": "web3d",
+      "scene_module": "scene.js",
+      "duration_sec": 2.3333333333333335,
+      "params": {
+        "offset": 0,
+        "cut": 0
+      }
+    },
+    {
+      "id": "decision",
+      "engine": "web3d",
+      "scene_module": "scene.js",
+      "duration_sec": 2.066666666666667,
+      "params": {
+        "offset": 70,
+        "cut": 1
+      }
+    },
+    {
+      "id": "discharge",
+      "engine": "web3d",
+      "scene_module": "scene.js",
+      "duration_sec": 3,
+      "params": {
+        "offset": 132,
+        "cut": 2
+      }
+    },
+    {
+      "id": "aftermath",
+      "engine": "web3d",
+      "scene_module": "scene.js",
+      "duration_sec": 2.6,
+      "params": {
+        "offset": 222,
+        "cut": 3
+      }
+    }
+  ]
+}

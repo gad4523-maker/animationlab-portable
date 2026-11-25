@@ -1,0 +1,9 @@
+/.runtime/
+/node_modules/
+/dist/
+**/work/
+**/out/
+**/__pycache__/
+**/.godot/
+*.pyc
+*.blend1

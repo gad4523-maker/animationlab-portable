@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+export PATH="$ROOT/.runtime/bin:$PATH"
+export PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-$ROOT/.runtime/browsers}"
+export OPENBLAS_NUM_THREADS="${ANIM_THREADS:-2}"
+export OMP_NUM_THREADS="${ANIM_THREADS:-2}"
+PY="$ROOT/.runtime/venv/bin/python"
+if [[ ! -x "$PY" ]]; then
+  echo 'Run bash bootstrap.sh first.' >&2
+  exit 1
+fi
+exec "$PY" "$ROOT/cli.py" "$@"
