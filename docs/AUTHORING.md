@@ -2,6 +2,8 @@
 
 An episode is a folder containing episode.json, scene modules or scripts, and its own assets. Use relative filenames. The pipeline calculates a single integer frame plan for captures, incoming/outgoing transitions, sound and captions. Keep random sequences seeded and drive motion from frame index or time in seconds.
 
+**Visual asset policy:** No generative AI image or video creation is permitted—not even individual sprite sheets, character illustrations, textures, backgrounds or keyframes. Author visuals with procedural code, manual drawing/modeling, or properly licensed human-made assets. Audio TTS remains allowed.
+
 ## Renderer selection
 
 | Engine | When to use | Required shot fields and entry point |

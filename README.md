@@ -1,6 +1,6 @@
 # AnimationLab Portable
 
-A CPU-oriented production pipeline for original animated Shorts. It uses the same episode clock, authorable scenes and FFmpeg finishing across layered 2D, multiplane 2.5D and stylized 3D. AnimationLab's asset policy permits programmatic art and human-authored or permissively licensed assets, including credited reference assets. AI-generated individual still assets (such as sprites, sprite sheets, textures and background layers) are permitted when the project brief allows them, but the final animation must be staged and animated by the production engines. Fully AI-generated videos and static-image slideshows are prohibited. CPU narration synthesis is supported.
+A CPU-oriented production pipeline for original animated Shorts. It uses the same episode clock, authorable scenes and FFmpeg finishing across layered 2D, multiplane 2.5D and stylized 3D. **No generative AI image or video creation is permitted, including individual sprites, sprite sheets, textures, backgrounds or keyframes.** Create visuals through procedural/code-driven drawing, manual art or appropriately licensed human-made sources, then animate them with the engines. Static-image slideshows are prohibited. CPU narration synthesis and audio processing are allowed.
 
 ## Start on Debian 12
 

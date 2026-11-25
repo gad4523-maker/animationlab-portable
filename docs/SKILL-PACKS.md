@@ -12,7 +12,7 @@ git submodule update --init --depth 1
 
 Alternatively clone with `git clone --recurse-submodules https://github.com/gad4523-maker/animationlab-portable.git`.
 
-These are **skill instructions and source references**, not automatically installed engine binaries. Do not run third-party hooks, startup scripts, or MCP servers blindly. Read only relevant SKILL.md files; the AnimationLab director, user brief, original-asset policy, and available CPU-only engine versions take priority.
+These are **skill instructions and source references**, not automatically installed engine binaries. Do not run third-party hooks, startup scripts, or MCP servers blindly. Read only relevant SKILL.md files; the AnimationLab director, user brief, **absolute ban on generative AI image/video creation (including individual visual assets)**, and available CPU-only engine versions take priority.
 
 | Source | Fit for our cinematic Shorts |
 | --- | --- |
@@ -23,7 +23,7 @@ These are **skill instructions and source references**, not automatically instal
 | [mromidev/claude-animated-shorts](https://github.com/mromidev/claude-animated-shorts) | Reference only: Remotion/Three.js; its output and caption rules differ |
 | [AnastasiyaW/codex-claude-code-config](https://github.com/AnastasiyaW/codex-claude-code-config) | Reference pixel-art/storyboard skills only; do not apply global config/hooks |
 | [RobLe3/cc-blender-skill](https://github.com/RobLe3/cc-blender-skill) | Blender 5.x/MCP-focused; verify before applying on Blender 3.4 |
-| [smixs/visual-skills](https://github.com/smixs/visual-skills) | AI-video/image-generation prompt skills; **do not activate** under current asset restrictions; CC-BY-4.0 attribution |
+| [smixs/visual-skills](https://github.com/smixs/visual-skills) | Generative image/video prompt skills; **do not use or activate** (contrary to the no-generation policy); CC-BY-4.0 attribution |
 | [finktheartist/sakuga-vfx](https://github.com/finktheartist/sakuga-vfx) | Anime-styled UI controls, not a complete combat VFX engine |
 | [CloudAI-X/threejs-skills](https://github.com/CloudAI-X/threejs-skills) | Targets Three.js r186, while this repository vendors r170; check API differences |
 
