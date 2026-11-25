@@ -1,0 +1,39 @@
+[submodule "skills/external/claude-animated-shorts"]
+	path = skills/external/claude-animated-shorts
+	url = https://github.com/mromidev/claude-animated-shorts.git
+
+[submodule "skills/external/motion-design-skills"]
+	path = skills/external/motion-design-skills
+	url = https://github.com/iart-ai/motion-design-skills.git
+
+[submodule "skills/external/codex-claude-code-config"]
+	path = skills/external/codex-claude-code-config
+	url = https://github.com/AnastasiyaW/codex-claude-code-config.git
+
+[submodule "skills/external/blender-skills"]
+	path = skills/external/blender-skills
+	url = https://github.com/arjun988/blender-skills.git
+
+[submodule "skills/external/cc-blender-skill"]
+	path = skills/external/cc-blender-skill
+	url = https://github.com/RobLe3/cc-blender-skill.git
+
+[submodule "skills/external/awesome-gamedev-agent-skills"]
+	path = skills/external/awesome-gamedev-agent-skills
+	url = https://github.com/gamedev-skills/awesome-gamedev-agent-skills.git
+
+[submodule "skills/external/visual-skills"]
+	path = skills/external/visual-skills
+	url = https://github.com/smixs/visual-skills.git
+
+[submodule "skills/external/sakuga-vfx"]
+	path = skills/external/sakuga-vfx
+	url = https://github.com/finktheartist/sakuga-vfx.git
+
+[submodule "skills/external/pixijs-skills"]
+	path = skills/external/pixijs-skills
+	url = https://github.com/pixijs/pixijs-skills.git
+
+[submodule "skills/external/threejs-skills"]
+	path = skills/external/threejs-skills
+	url = https://github.com/CloudAI-X/threejs-skills.git

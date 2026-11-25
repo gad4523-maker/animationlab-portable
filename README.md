@@ -21,7 +21,7 @@ bash animlab render projects/new-short --profile balanced
 bash animlab estimate projects/new-short/out/balanced/benchmark.json --seconds 60
 ~~~
 
-See [the authoring guide](docs/AUTHORING.md) for episode keys and scene contracts. See [transfer instructions](docs/GEMINI-TRANSFER.md), [startup prompt](prompts/GEMINI-STARTUP.md), and [production prompt](prompts/GEMINI-PRODUCTION.md) for Gemini Tasks. The director lives in [skills/anime-shorts-director](skills/anime-shorts-director/SKILL.md).
+Ten optional, version-pinned third-party skill repositories are linked as Git submodules. Run `git submodule update --init --depth 1` when you need them, then consult [the skill pack guide](docs/SKILL-PACKS.md). They are not runtime dependencies.\n\nSee [the authoring guide](docs/AUTHORING.md) for episode keys and scene contracts. See [transfer instructions](docs/GEMINI-TRANSFER.md), [startup prompt](prompts/GEMINI-STARTUP.md), and [production prompt](prompts/GEMINI-PRODUCTION.md) for Gemini Tasks. The director lives in [skills/anime-shorts-director](skills/anime-shorts-director/SKILL.md).
 
 | Example | Command suffix after `bash animlab render` |
 | --- | --- |
